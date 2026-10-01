@@ -1,0 +1,921 @@
+<!DOCTYPE html>
+
+<!-- saved from url=(0030)http://127.0.0.1:8000/?lang=fa -->
+<html dir="rtl" lang="fa"><head><meta content="text/html; charset=utf-8" http-equiv="Content-Type"/>
+<meta content="width=device-width, initial-scale=1" name="viewport"/>
+<title>معلومات شرکت</title>
+<style>
+            :root {
+                color-scheme: light;
+                --font-ltr: ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                --font-rtl: "B Nazanin", "BNazanin", "Nazanin", Tahoma, Arial, sans-serif;
+                --accent: #d97706;
+                --border: #d8dde6;
+                --muted: #5f6877;
+                --surface: #ffffff;
+                --page: #f6f7f9;
+                --text: #151922;
+                font-family: var(--font-ltr);
+            }
+
+            * {
+                box-sizing: border-box;
+            }
+
+            body {
+                margin: 0;
+                background: var(--page);
+                color: var(--text);
+                direction: ltr;
+                font-family: var(--font-ltr);
+                overflow-x: hidden;
+            }
+
+            html[dir="rtl"] body {
+                direction: rtl;
+                font-family: var(--font-rtl);
+            }
+
+            .page {
+                margin: 0 auto;
+                max-width: 1180px;
+                padding: 28px 20px 56px;
+            }
+
+            .topbar {
+                align-items: center;
+                display: flex;
+                gap: 16px;
+                justify-content: space-between;
+                margin-bottom: 22px;
+            }
+
+            .language-links {
+                display: flex;
+                flex-wrap: wrap;
+                gap: 8px;
+            }
+
+            html[dir="rtl"] .language-links {
+                flex-direction: row-reverse;
+            }
+
+            .language-links a,
+            .admin-link {
+                border: 1px solid var(--border);
+                border-radius: 6px;
+                color: #313844;
+                font-size: 14px;
+                padding: 8px 11px;
+                text-decoration: none;
+            }
+
+            h1 {
+                font-size: 28px;
+                line-height: 1.15;
+                margin: 0;
+            }
+
+            form {
+                display: grid;
+                gap: 18px;
+            }
+
+            section {
+                background: var(--surface);
+                border: 1px solid var(--border);
+                border-radius: 8px;
+                overflow: hidden;
+            }
+
+            .section-header {
+                border-bottom: 1px solid var(--border);
+                padding: 18px 22px;
+            }
+
+            .section-header h2 {
+                font-size: 17px;
+                margin: 0 0 5px;
+            }
+
+            .section-header p {
+                color: var(--muted);
+                margin: 0;
+            }
+
+            .section-body {
+                display: grid;
+                gap: 16px;
+                padding: 20px 22px 22px;
+            }
+
+            .grid {
+                display: grid;
+                gap: 16px;
+                grid-template-columns: repeat(1, minmax(0, 1fr));
+            }
+
+            @media (min-width: 760px) {
+                .grid.two {
+                    grid-template-columns: repeat(2, minmax(0, 1fr));
+                }
+
+                .grid.three {
+                    grid-template-columns: repeat(3, minmax(0, 1fr));
+                }
+
+                .grid.four {
+                    grid-template-columns: repeat(4, minmax(0, 1fr));
+                }
+            }
+
+            label {
+                display: grid;
+                font-size: 14px;
+                font-weight: 650;
+                gap: 7px;
+                min-width: 0;
+            }
+
+            input,
+            select,
+            textarea {
+                background: #fff;
+                border: 1px solid #cfd5df;
+                border-radius: 6px;
+                color: var(--text);
+                font: inherit;
+                min-height: 42px;
+                padding: 9px 11px;
+                width: 100%;
+            }
+
+            .grid > * {
+                min-width: 0;
+            }
+
+            input[dir="ltr"],
+            textarea[dir="ltr"],
+            input[type="email"],
+            input[type="date"],
+            input[type="number"],
+            input[type="tel"] {
+                direction: ltr;
+                font-family: var(--font-ltr);
+                text-align: left;
+            }
+
+            input[dir="rtl"],
+            textarea[dir="rtl"] {
+                direction: rtl;
+                font-family: var(--font-rtl);
+                text-align: right;
+            }
+
+            textarea {
+                min-height: 110px;
+                resize: vertical;
+            }
+
+            input:focus,
+            select:focus,
+            textarea:focus {
+                border-color: var(--accent);
+                outline: 2px solid rgb(217 119 6 / 18%);
+            }
+
+            .choices {
+                align-items: center;
+                display: flex;
+                flex-wrap: wrap;
+                gap: 14px;
+            }
+
+            .choices label {
+                align-items: center;
+                display: inline-flex;
+                font-weight: 500;
+                gap: 7px;
+            }
+
+            .choices input {
+                min-height: auto;
+                width: auto;
+            }
+
+            .error {
+                color: #b42318;
+                font-size: 13px;
+                font-weight: 500;
+            }
+
+            .alert {
+                background: #fff1f1;
+                border: 1px solid #ffc9c9;
+                border-radius: 8px;
+                color: #8f1f1f;
+                padding: 14px 16px;
+            }
+
+            .actions {
+                align-items: center;
+                display: flex;
+                justify-content: end;
+            }
+
+            button {
+                background: var(--accent);
+                border: 0;
+                border-radius: 6px;
+                color: white;
+                cursor: pointer;
+                font: inherit;
+                font-weight: 700;
+                min-height: 44px;
+                padding: 10px 18px;
+            }
+
+            [data-honeypot] {
+                border: 0;
+                clip: rect(0 0 0 0);
+                clip-path: inset(50%);
+                height: 1px;
+                margin: -1px;
+                overflow: hidden;
+                padding: 0;
+                position: absolute;
+                white-space: nowrap;
+                width: 1px;
+            }
+        </style>
+</head>
+<body>
+<main class="page">
+<div class="topbar">
+<div>
+<h1>معلومات شرکت</h1>
+</div>
+<div class="language-links">
+<a href="http://127.0.0.1:8000/?lang=en">انگلیسی</a>
+<a href="http://127.0.0.1:8000/?lang=ps">پشتو</a>
+<a href="http://127.0.0.1:8000/?lang=fa">فارسی</a>
+<a class="admin-link" href="http://127.0.0.1:8000/admin">Admin</a>
+</div>
+</div>
+<form action="http://127.0.0.1:8000/" enctype="multipart/form-data" method="POST"><input name="tin_number" type="hidden" value=""/><input name="email_address" type="hidden" value=""/><input name="phone_number_1" type="hidden" value=""/>
+<input autocomplete="off" name="_token" type="hidden" value="rlWq2WyHfXRehpHs9X0LoABuxzpE2SKShX6Wo0rB"/> <input name="submission_started_at" type="hidden" value="eyJpdiI6IlplSTZNa2JJRG5xM3pIVmlpYnRLd2c9PSIsInZhbHVlIjoiZU8xS2hLTklYWStUL3BUSTREaGNDZz09IiwibWFjIjoiYjcyN2MxNWVhOWM1M2NlZjVjYjQyOWUxYzhlYTQ2OWZmZDUxZDIxM2FmZmFlMzk4NmJmMDA4MTNhYjhjZDY5MCIsInRhZyI6IiJ9"/>
+<div data-honeypot="">
+<label>
+                        Website
+                        <input autocomplete="off" name="website" tabindex="-1" type="text"/>
+</label>
+</div>
+<section class="activity-status-section">
+<div class="section-header">
+<h2>حالت فعالیت</h2>
+<p>وضعیت فعالیت شرکت کنید.</p>
+</div>
+<div class="section-body">
+<div class="choices" id="activity_status_group">
+<label>
+<input id="activity_status_active" name="activity_status" type="radio" value="active"/>
+فعال
+</label>
+<label>
+<input checked="" id="activity_status_inactive" name="activity_status" type="radio" value="inactive"/>
+غیر فعال
+</label>
+</div>
+</div>
+</section>
+<section>
+<div class="section-header">
+<h2>مشخصات متقاضی و شرکت</h2>
+<p>نوع متقاضی را انتخاب نموده و مشخصات مشترک، شخص حقیقی یا شرکت را در همین بخش تکمیل کنید.</p>
+</div>
+<div class="section-body">
+<label>
+                            نوع متقاضی
+                            <select id="applicant_type" name="applicant_type" required="">
+<option value=""></option>
+<option value="individual">شخص حقیقی</option>
+<option value="legal">شخص حقوقی (شرکت)</option>
+</select>
+</label>
+<div data-applicant-section="individual" hidden=""><div>
+<div class="grid two">
+<label>
+    نام شرکت (پشتو/دری)
+    <input dir="rtl" maxlength="255" name="company_name" required="" type="text" value=""/>
+</label>
+<label>
+    نام شرکت (انگلیسی)
+    <input dir="ltr" maxlength="255" name="company_name_en" required="" type="text" value=""/>
+</label>
+</div>
+<div class="grid three">
+<label>
+    نام رئیس شرکت (پشتو/دری)
+    <input dir="rtl" maxlength="255" name="company_ceo" type="text" value=""/>
+</label>
+<label>
+    نام رئیس شرکت (انگلیسی)
+    <input dir="ltr" maxlength="255" name="company_ceo_en" type="text" value=""/>
+</label>
+<label>
+    نمبر تشخیصیه مالیاتی (TIN)
+    <input maxlength="255" name="tin_number" type="text" value=""/>
+</label>
+</div>
+
+<h3>شخص حقیقی</h3>
+<div class="grid two">
+<label>
+    نام و تخلص
+    <input disabled="" maxlength="255" name="individual[full_name]" required="" type="text" value=""/>
+</label>
+<label>
+    نام پدر
+    <input disabled="" maxlength="255" name="individual[father_name]" required="" type="text" value=""/>
+</label>
+<label>
+    شماره تذکره یا پاسپورت
+    <input disabled="" maxlength="255" name="individual[identity_number]" required="" type="text" value=""/>
+</label>
+
+
+<label>
+    آدرس
+    <input disabled="" maxlength="255" name="individual[address]" required="" type="text" value=""/>
+</label>
+<label>
+    شماره تلفن
+    <input disabled="" maxlength="255" name="individual[phone]" required="" type="tel" value=""/>
+</label>
+<label>
+    ایمیل
+    <input disabled="" maxlength="255" name="individual[email]" required="" type="email" value=""/>
+</label>
+<label>
+    شماره واتساپ
+    <input disabled="" maxlength="255" name="whatsapp_number" type="tel" value=""/>
+</label>
+</div>
+</div></div>
+<div data-applicant-section="legal" hidden=""><div>
+<div class="grid two">
+<label>
+    نام شرکت (پشتو/دری)
+    <input dir="rtl" maxlength="255" name="company_name" required="" type="text" value=""/>
+</label>
+<label>
+    نام شرکت (انگلیسی)
+    <input dir="ltr" maxlength="255" name="company_name_en" required="" type="text" value=""/>
+</label>
+</div>
+<div class="grid three">
+<label>
+    نام رئیس شرکت (پشتو/دری)
+    <input dir="rtl" maxlength="255" name="company_ceo" type="text" value=""/>
+</label>
+<label>
+    نام رئیس شرکت (انگلیسی)
+    <input dir="ltr" maxlength="255" name="company_ceo_en" type="text" value=""/>
+</label>
+<label>
+    نمبر تشخیصیه مالیاتی (TIN)
+    <input maxlength="255" name="tin_number" type="text" value=""/>
+</label>
+</div>
+
+<h3>شخص حقوقی (شرکت)</h3>
+<div class="grid two">
+<label>
+    شماره ثبت شرکت
+    <input disabled="" maxlength="255" name="legal[registration_number]" required="" type="text" value=""/>
+</label>
+<label>
+    شماره جواز فعالیت وزارت صنعت و تجارت
+    <input disabled="" maxlength="255" name="legal[license_number]" required="" type="text" value=""/>
+</label>
+<label>
+    تاریخ ختم جواز وزارت صنعت و تجارت
+    <input disabled="" name="license_expiration_date" type="date" value=""/>
+</label>
+<label>
+    نام معاون شرکت (پشتو/دری)
+    <input dir="rtl" disabled="" maxlength="255" name="company_assistant" type="text" value=""/>
+</label>
+<label>
+    نام معاون شرکت (انگلیسی)
+    <input dir="ltr" disabled="" maxlength="255" name="company_assistant_en" type="text" value=""/>
+</label>
+<label>
+    آدرس
+    <input disabled="" maxlength="255" name="legal[address]" required="" type="text" value=""/>
+</label>
+<label>
+    شماره تلفن شرکت
+    <input disabled="" maxlength="255" name="legal[phone]" type="tel" value=""/>
+</label>
+<label>
+    ایمیل شرکت
+    <input disabled="" maxlength="255" name="legal[email]" type="email" value=""/>
+</label>
+<label>
+    شماره واتساپ
+    <input disabled="" maxlength="255" name="whatsapp_number" type="tel" value=""/>
+</label>
+</div>
+<div class="grid two">
+<label>
+    نماینده شرکت: نام و تخلص
+    <input disabled="" maxlength="255" name="legal[representative_full_name]" required="" type="text" value=""/>
+</label>
+<label>
+    نماینده شرکت: نام پدر
+    <input disabled="" maxlength="255" name="legal[representative_father_name]" required="" type="text" value=""/>
+</label>
+<label>
+    نماینده شرکت: شماره تذکره یا پاسپورت
+    <input disabled="" maxlength="255" name="legal[representative_identity_number]" required="" type="text" value=""/>
+</label>
+
+
+<label>
+    نماینده شرکت: آدرس
+    <input disabled="" maxlength="255" name="legal[representative_address]" required="" type="text" value=""/>
+</label>
+<label>
+    نماینده شرکت: شماره تلفن
+    <input disabled="" maxlength="255" name="legal[representative_phone]" required="" type="tel" value=""/>
+</label>
+<label>
+    نماینده شرکت: ایمیل
+    <input disabled="" maxlength="255" name="legal[representative_email]" required="" type="email" value=""/>
+</label>
+</div>
+</div></div>
+</div>
+</section>
+<section>
+<div class="section-header">
+<h2>موقعیت شرکت</h2>
+<p>موقعیت فزیکی شرکت را بر اساس ولایت، ولسوالی، قریه/ناحیه و مختصات جغرافیایی درج کنید.</p>
+</div>
+<div class="section-body">
+<div class="grid three">
+<label>
+                                ولایت
+                                <input maxlength="255" name="province" value=""/>
+</label>
+<label>
+                                ولسوالی
+                                <input maxlength="255" name="district" value=""/>
+</label>
+<label>
+                                قریه / ناحیه
+                                <input maxlength="255" name="zone" value=""/>
+</label>
+<label>
+                                مختصات X
+                                <input maxlength="255" name="coordinate_x" value=""/>
+</label>
+<label>
+                                مختصات Y
+                                <input maxlength="255" name="coordinate_y" value=""/>
+</label>
+</div>
+</div>
+</section>
+<section>
+<div class="section-header">
+<h2>تعداد مشترکین</h2>
+<p>نوع فروش برق مشترکین را انتخاب نمایید.</p>
+</div>
+<div class="section-body">
+<div>
+<label>نوع فروش برق</label>
+<div class="choices">
+<label>
+<input name="customer_types[]" type="checkbox" value="commercial"/>
+                                        تجارتی
+                                    </label>
+<label>
+<input name="customer_types[]" type="checkbox" value="industrial"/>
+                                        صنعتی
+                                    </label>
+<label>
+<input name="customer_types[]" type="checkbox" value="government"/>
+                                        دولتی
+                                    </label>
+<label>
+<input name="customer_types[]" type="checkbox" value="residential"/>
+                                        رهایشی
+                                    </label>
+</div>
+</div>
+</div>
+</section>
+<section>
+<div class="section-header">
+<h2>نوع انرژی</h2>
+<p>یک نوع تولید را انتخاب کنید. فورم تخنیکی مربوط آن در پایین ظاهر می‌شود.</p>
+</div>
+<div class="section-body">
+<label>
+                            نوع تولید انرژی
+                            <select id="type_of_energy" name="type_of_energy" required=""><option value=""></option><option value="hpp">برق آبی</option><option value="spp">سولری</option><option value="tpp">دیزلی (حرارتی)</option><option value="cpp">ذغال سنگ</option><option value="gtp">گازی</option></select>
+</label>
+</div>
+</section><section data-energy-common="" hidden="">
+<div class="section-header"><h2>مشخصات تخنیکی دستگاه</h2><p>موارد مشترک یک‌بار آمده است؛ در صورت موجود نبودن یک گزینه، با کلمه «ندارد» خانه‌پری گردد. لست تجهیزات ناصبه دیگر را ضمیمه نمایید.</p></div>
+<div class="section-body"><div class="grid three">
+<label data-types="hsdcg">
+ظرفیت ناصبه دستگاه (MW/KW)
+<input maxlength="255" name="energy_details[rated_capacity]" type="text"/>
+</label>
+<label data-types="hsdcg">
+ظرفیت تولیدی دستگاه (MWH/KWH)
+<input maxlength="255" name="energy_details[generation_capacity]" type="text"/>
+</label>
+<label data-types="hcg">
+تعداد واحدهای تولیدی
+<input maxlength="255" min="0" name="energy_details[generation_units]" type="number"/>
+</label>
+<label data-types="s">
+تعداد پنل‌های تولیدی
+<input maxlength="255" min="0" name="energy_details[solar_panels]" type="number"/>
+</label>
+<label data-types="s">
+ظرفیت هر پنل (watt)
+<input maxlength="255" name="energy_details[panel_watt]" type="text"/>
+</label>
+<label data-types="hdcg">
+تعداد جنراتورها
+<input maxlength="255" min="0" name="energy_details[generators_count]" type="number"/>
+</label>
+<label data-types="cg">
+ظرفیت جنراتورها
+<input maxlength="255" name="energy_details[generator_capacity]" type="text"/>
+</label>
+<label data-types="sdcg">
+فریکونسی دستگاه تولید
+<input maxlength="255" name="energy_details[frequency]" type="text"/>
+</label>
+<label data-types="hdcg">
+سرعت نامی جنراتور (RPM)
+<input maxlength="255" name="energy_details[rated_speed]" type="text"/>
+</label>
+<label data-types="dcg">
+ضریب توان نامی (Cos φ)
+<input maxlength="255" name="energy_details[power_factor]" type="text"/>
+</label>
+<label data-types="d">
+نوعیت سیستم سردسازی جنراتورها
+<input maxlength="255" name="energy_details[cooling_type]" type="text"/>
+</label>
+<label data-types="hsdcg">
+ظرفیت ترانسفارمرها
+<input maxlength="255" name="energy_details[transformer_capacity]" type="text"/>
+</label>
+<label data-types="hsdcg">
+تعداد ترانسفارمرها
+<input maxlength="255" min="0" name="energy_details[transformer_count]" type="number"/>
+</label>
+<label data-types="cg">
+نوعیت ترانسفارمرها
+<input maxlength="255" name="energy_details[transformer_type]" type="text"/>
+</label>
+<label data-types="hsdcg">
+مقطع کیبل‌ها در بخش تولید انرژی برق
+<input maxlength="255" name="energy_details[cable_section]" type="text"/>
+</label>
+<label data-types="hsdcg">
+مقطع لین‌ها در بخش توزیع انرژی برق
+<input maxlength="255" name="energy_details[line_section]" type="text"/>
+</label>
+<label data-types="h">
+ارتفاع آب‌ریزه بالای توربین
+<input maxlength="255" name="energy_details[water_head]" type="text"/>
+</label>
+<label data-types="h">
+نوعیت توربین‌ها
+<input maxlength="255" name="energy_details[turbine_type]" type="text"/>
+</label>
+<label data-types="h">
+ظرفیت توربین‌ها
+<input maxlength="255" name="energy_details[turbine_capacity]" type="text"/>
+</label>
+<label data-types="s">
+ظرفیت و تعداد انورترها
+<input maxlength="255" name="energy_details[inverters]" type="text"/>
+</label>
+<label data-types="s">
+مقدار انرژی برق کمکی از منبع دیگر
+<input maxlength="255" name="energy_details[aux_energy]" type="text"/>
+</label>
+<label data-types="sd">
+سیستم سنکرون با منبع دیگر (جزئیات جدا ضمیمه گردد)
+<input maxlength="255" name="energy_details[sync_system]" type="text"/>
+</label>
+<label data-types="s">
+تعداد و نوعیت بطری‌ها برای Back up
+<input maxlength="255" name="energy_details[batteries]" type="text"/>
+</label>
+<label data-types="s">
+مقدار جریان بطری‌ها
+<input maxlength="255" name="energy_details[battery_current]" type="text"/>
+</label>
+<label data-types="d">
+تعداد استیپ‌لایزرها
+<input maxlength="255" min="0" name="energy_details[stabilizer_count]" type="number"/>
+</label>
+<label data-types="d">
+نوعیت استیپ‌لایزرها
+<input maxlength="255" name="energy_details[stabilizer_type]" type="text"/>
+</label>
+<label data-types="d">
+ظرفیت استیپ‌لایزرها
+<input maxlength="255" name="energy_details[stabilizer_capacity]" type="text"/>
+</label>
+<label data-types="d">
+مشخصات لود بانک (جزئیات جدا ضمیمه گردد)
+<input maxlength="255" name="energy_details[load_bank]" type="text"/>
+</label>
+<label data-types="c">
+نوع و منبع زغال سنگ
+<input maxlength="255" name="energy_details[fuel_type]" type="text"/>
+</label>
+<label data-types="c">
+مقدار یا سطوح انتشار NOx, SOx
+<input maxlength="255" name="energy_details[emission_levels]" type="text"/>
+</label>
+<label data-types="c">
+مدیریت و دفع خاکستر و سیستم دودکش (جزئیات جدا ضمیمه گردد)
+<input maxlength="255" name="energy_details[ash_management]" type="text"/>
+</label>
+<label data-types="c">
+مقدار فشار و گرمای بایلرها
+<input maxlength="255" name="energy_details[boiler]" type="text"/>
+</label>
+<label data-types="g">
+نوعیت و کیفیت گاز (جزئیات جدا ضمیمه گردد)
+<input maxlength="255" name="energy_details[gas_type]" type="text"/>
+</label>
+<label data-types="c">
+نوع توربین بخار
+<input maxlength="255" name="energy_details[steam_turbine_type]" type="text"/>
+</label>
+<label data-types="c">
+مؤثریت توربین بخار
+<input maxlength="255" name="energy_details[steam_turbine_eff]" type="text"/>
+</label>
+<label data-types="c">
+حداقل و حداکثر ظرفیت توربین بخار (جزئیات جدا ضمیمه گردد)
+<input maxlength="255" name="energy_details[steam_minmax]" type="text"/>
+</label>
+<label data-types="g">
+نوع توربین گازی
+<input maxlength="255" name="energy_details[gas_turbine_type]" type="text"/>
+</label>
+<label data-types="g">
+مؤثریت توربین گازی
+<input maxlength="255" name="energy_details[gas_turbine_eff]" type="text"/>
+</label>
+<label data-types="g">
+حداقل و حداکثر ظرفیت توربین گازی
+<input maxlength="255" name="energy_details[gas_minmax]" type="text"/>
+</label>
+<label data-types="g">
+نوع سیستم ورودی هوا
+<input maxlength="255" name="energy_details[air_intake]" type="text"/>
+</label>
+<label data-types="c">
+مقدار کالوری انرژی تولیدشده در هر کیلوگرام زغال سنگ
+<input maxlength="255" name="energy_details[calorific]" type="text"/>
+</label>
+<label data-types="hdcg">
+مقدار انرژی فعال تولیدشده برای یک دوره (سه ماه)
+<input maxlength="255" name="energy_details[active_energy_3m]" type="text"/>
+</label>
+<label data-types="hsdcg">
+تعداد و ظرفیت صاعقه‌گیرها
+<input maxlength="255" name="energy_details[lightning]" type="text"/>
+</label>
+<label data-types="hsd">
+ظرفیت و نوعیت مین سویچ‌ها
+<input maxlength="255" name="energy_details[main_switch]" type="text"/>
+</label>
+<label data-types="hsdcg">
+مقدار ضایعات در دستگاه تولیدی (٪)
+<input maxlength="255" name="energy_details[losses]" type="text"/>
+</label>
+<label data-types="hsdcg">
+مقدار مصرف انرژی داخلی سیستم (MWH/KWH)
+<input maxlength="255" name="energy_details[internal_use]" type="text"/>
+</label>
+<label data-types="hcg">
+عمر مفیده دستگاه
+<input maxlength="255" name="energy_details[useful_life]" type="text"/>
+</label>
+<label data-types="hsdcg">
+سیستم ارتینگ
+<select name="energy_details[earthing]"><option value=""></option><option value="yes">دارد</option><option value="no">ندارد</option></select>
+</label>
+</div></div></section><section>
+<div class="section-header"><h2>معلومات مالی و عملیاتی</h2><p>شرکا، کارمندان، تولید، عواید و مصارف.</p></div>
+<div class="section-body"><div class="grid three">
+<label>
+نام شرکا و فیصدی سرمایه
+<input maxlength="255" name="operations[partners]" type="text"/>
+</label>
+<label>
+تعداد کارمندان
+<input maxlength="255" min="0" name="operations[employees_count]" type="number"/>
+</label>
+<label>
+معاش کارمندان (مجموع)
+<input maxlength="255" name="operations[employees_salary]" type="text"/>
+</label>
+<label>
+تولید ماهانه
+<input maxlength="255" name="operations[production_monthly]" type="text"/>
+</label>
+<label>
+تولید هفته‌وار
+<input maxlength="255" name="operations[production_weekly]" type="text"/>
+</label>
+<label>
+تولید روزانه
+<input maxlength="255" name="operations[production_daily]" type="text"/>
+</label>
+<label>
+ساعات فعالیت روزانه
+<input maxlength="255" min="0" name="operations[daily_hours]" type="number"/>
+</label>
+<label>
+عواید سالانه
+<input maxlength="255" name="operations[revenue_yearly]" type="text"/>
+</label>
+<label>
+عواید ماهانه
+<input maxlength="255" name="operations[revenue_monthly]" type="text"/>
+</label>
+<label>
+عواید هفته‌وار
+<input maxlength="255" name="operations[revenue_weekly]" type="text"/>
+</label>
+<label>
+عواید روزانه
+<input maxlength="255" name="operations[revenue_daily]" type="text"/>
+</label>
+<label>
+مصارف اداری
+<input maxlength="255" name="operations[cost_admin]" type="text"/>
+</label>
+<label>
+مصارف حفظ و مراقبت
+<input maxlength="255" name="operations[cost_maintenance]" type="text"/>
+</label>
+<label>
+سایر مصارف
+<input maxlength="255" name="operations[cost_other]" type="text"/>
+</label>
+<label>
+لوگوی شرکت
+<input accept="image/*" name="company_logo" type="file"/>
+</label>
+</div>
+<label>
+اهداف فعالیت
+<textarea name="activity_goals"></textarea>
+</label></div></section>
+<section>
+<div class="section-header">
+<h2>توضیحات</h2>
+<p>یادداشت‌های اختیاری به زبان محلی و انگلیسی.</p>
+</div>
+<div class="section-body">
+<div class="grid two">
+<label>
+                                توضیحات (پشتو/دری)
+                                <textarea dir="rtl" name="comment"></textarea>
+</label>
+<label>
+                                توضیحات (انگلیسی)
+                                <textarea dir="ltr" name="comment_en"></textarea>
+</label>
+</div>
+</div>
+</section>
+<section>
+<div class="section-header">
+<h2>سند</h2>
+<p>سند ثبت یا جواز شرکت را آپلود کنید.</p>
+</div>
+<div class="section-body">
+<label>
+                            سند شرکت
+                            <input accept=".pdf,.jpg,.jpeg,.png,application/pdf,image/jpeg,image/png" name="document" type="file"/>
+</label>
+</div>
+</section>
+<div class="actions">
+<button type="submit">ارسال</button>
+</div>
+</form>
+</main>
+<script>
+            const applicantSelect = document.getElementById('applicant_type');
+            const form = document.querySelector('form');
+            const activityRadios = document.querySelectorAll('input[name="activity_status"]');
+            const activityActive = document.getElementById('activity_status_active');
+            const activityInactive = document.getElementById('activity_status_inactive');
+            let activityAlertShown = false;
+
+            function isActivityLocked() {
+                return activityActive && activityActive.checked;
+            }
+
+            function applyActivityState() {
+                const locked = isActivityLocked();
+                document.querySelectorAll('form input:not([type="hidden"]):not([name="activity_status"]), form select, form textarea, form button[type="submit"]').forEach((control) => {
+                    if (control.closest('[data-honeypot]')) return;
+                    control.disabled = locked;
+                });
+
+                // Keep the activity controls themselves available so the user can switch back.
+                activityRadios.forEach((radio) => { radio.disabled = false; });
+
+                // Preserve the existing applicant and energy rules whenever the form is unlocked.
+                if (!locked) {
+                    syncApplicantSections();
+                    syncEnergySections();
+                }
+            }
+
+            function syncLegacyFields() {
+                const type = applicantSelect ? applicantSelect.value : '';
+                const phone = form.querySelector('input[name="' + (type === 'legal' ? 'legal[phone]' : 'individual[phone]') + '"]');
+                const email = form.querySelector('input[name="' + (type === 'legal' ? 'legal[email]' : 'individual[email]') + '"]');
+                const tin = form.querySelector('input[name="legal[tin_number]"]');
+                const legacyPhone = form.querySelector('input[name="phone_number_1"][type="hidden"]');
+                const legacyEmail = form.querySelector('input[name="email_address"][type="hidden"]');
+                const legacyTin = form.querySelector('input[name="tin_number"][type="hidden"]');
+                if (legacyPhone) legacyPhone.value = phone ? phone.value : '';
+                if (legacyEmail) legacyEmail.value = email ? email.value : '';
+                if (legacyTin) legacyTin.value = tin ? tin.value : '';
+            }
+
+            function syncApplicantSections() {
+                document.querySelectorAll('[data-applicant-section]').forEach((section) => {
+                    const selected = section.dataset.applicantSection === applicantSelect.value;
+                    section.hidden = !selected;
+                    section.querySelectorAll('input, select, textarea').forEach((control) => {
+                        control.disabled = !selected || isActivityLocked();
+                    });
+                });
+            }
+            applicantSelect.addEventListener('change', syncApplicantSections);
+
+            document.querySelectorAll('input[name="individual[phone]"], input[name="individual[email]"], input[name="legal[phone]"], input[name="legal[email]"], input[name="legal[tin_number]"]').forEach((input) => {
+                input.addEventListener('input', syncLegacyFields);
+                input.addEventListener('change', syncLegacyFields);
+            });
+            form.addEventListener('submit', syncLegacyFields);
+            syncLegacyFields();
+
+            const energySelect = document.getElementById('type_of_energy');
+            const common = document.querySelector('[data-energy-common]');
+        const fields = common.querySelectorAll('[data-types]');
+        const codes = { hpp: 'h', spp: 's', tpp: 'd', cpp: 'c', gtp: 'g' };
+        function syncEnergySections() {
+            const code = codes[energySelect.value];
+            common.hidden = !code;
+            fields.forEach((f) => {
+                const on = !!code && f.dataset.types.includes(code);
+                f.hidden = !on;
+                f.querySelectorAll('input,select').forEach((i) => { i.disabled = !on || isActivityLocked(); });
+            });
+        }
+        energySelect.addEventListener('change', syncEnergySections);
+
+        activityRadios.forEach((radio) => {
+            radio.addEventListener('change', () => {
+                if (isActivityLocked()) {
+                    alert('تاسی نه شی کولای چی دا معلومات درج کړی');
+                    activityAlertShown = true;
+                } else {
+                    activityAlertShown = false;
+                }
+                applyActivityState();
+            });
+        });
+
+        // Default: "غیر فعال" so the form can be filled.
+        applyActivityState();
+        syncApplicantSections();
+        syncEnergySections();
+        </script>
+</body></html>
